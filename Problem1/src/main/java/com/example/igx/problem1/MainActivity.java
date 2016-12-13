@@ -1,14 +1,16 @@
 package com.example.igx.problem1;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity /* implements Something1, Something2 */ {
-
+    public final static String EXTRA_MESSAGE = "com.example.igx.problem1";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,8 +41,21 @@ public class MainActivity extends AppCompatActivity /* implements Something1, So
         btn_sendMessage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Get the intent that started this activity
+                Intent intent = getIntent();
+                Uri data = intent.getData();
+
+                // Figure out what to do based on the intent type
+                if (intent.getType().indexOf("image/") != -1) {
+                    // Handle intents with image data ...
+                } else if (intent.getType().equals("text/plain")) {
+                    // Handle intents with text ...
+                }
+
 
             }
         });
+
+
     }
 }
